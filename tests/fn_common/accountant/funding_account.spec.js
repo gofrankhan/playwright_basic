@@ -11,5 +11,5 @@ test("Accountant", async ({ page }) => {
     await page.getByText('Add', { exact: true }).click();
     await page.getByRole('combobox', { name: 'Company Name:' }).selectOption('9739');
     await page.locator(`xpath=//input[@id='typeahead_input']`).fill('sdfgsdfg');
-    await page.getByRole('button', { name: "Continue", exact: true }).click();
+    await page.getByRole('button', { name: "Update", exact: true }).click();
 });
