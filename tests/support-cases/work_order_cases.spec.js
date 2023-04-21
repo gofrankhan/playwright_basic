@@ -33,18 +33,14 @@ test('Create Work Order Case - How To/Technical assitance', async ({ page }) => 
     await page.waitForTimeout(2000);
     await page.locator("#title").fill('Work Order Title');
     await page.waitForTimeout(2000);
-    //await page.locator('#financeId').click();
-    //await page.getByRole('option', { name: '/Default/' }).click();
-    //await page.keyboard.press('Enter');
     await page.getByRole('button', { name: "Publish", exact: true }).click();
     await page.waitForTimeout(2000);
 
     await page.getByRole('button', { name: "Report Problem" }).click();
     await page.waitForTimeout(2000);
-    await page.locator(`xpath=//textarea[@data-testid="reportProblemExplanation"]`).fill("Explanation");
-    await page.locator(`xpath=//select[@data-testid="reportProblemDropDown"]`).click();
-    await page.getByRole('option', { name: 'How to/Technical assistance', exact: true }).click();
-    await page.getByRole('button', { name: "Report Problem", exact: true }).click();
+    await page.locator('#reportProblemDropDown').selectOption('73');
+    await page.getByRole('textbox').fill('Test Text');
+    await page.getByTestId('Report Problem').click();
 
 
     //Naviage to support case page
@@ -53,4 +49,4 @@ test('Create Work Order Case - How To/Technical assitance', async ({ page }) => 
     await page.getByRole('link', { name: "Company Cases" }).click();
     await page.locator(`xpath = //span[text()="Create Case"]`).click();
     await page.waitForTimeout(2000);
-})
+});
