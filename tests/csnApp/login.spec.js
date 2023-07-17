@@ -4,11 +4,11 @@ test.beforeEach(async ({ page }) => {
     await page.goto("http://127.0.0.1:8000/");
 });
 
-test.skip("Check The Login Page Title", async ({ page }) => {
-    await expect(page).toHaveTitle("Login | Upcube | Admin");
+test("Check The Login Page Title", async ({ page }) => {
+    await expect(page).toHaveTitle("Login | CAF PC POINT");
     await expect(page).toHaveTitle(/Login/);
-    await expect(page).toHaveTitle(/Upcube/);
-    await expect(page).toHaveTitle(/Admin/);
+    await expect(page).toHaveTitle(/CAF/);
+    await expect(page).toHaveTitle(/POINT/);
 });
 
 test.skip("Check Login Page Have All Login Elements Avaialable", async ({ page }) => {
