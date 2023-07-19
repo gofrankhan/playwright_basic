@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const { login_user, login_admin, login_lawyer, logout } = require('./common_methods');
 
 test.beforeEach(async ({ page }) => {
     await page.goto("http://127.0.0.1:8000/");
@@ -31,13 +32,20 @@ test.skip("Click on Remember Me Checkbox", async ({ page }) => {
     await page.getByLabel("Remember Me").check();
 });
 
-test("Check Valid Login As Gofran Khan", async ({ page }) => {
-    await page.locator("#username").fill("gofran.khan");
-    await page.locator("#password").fill("123");
-    await page.getByRole('button', { name: "Log In" }).click();
+test("Check Valid Login As User", async ({ page }) => {
+    login_user(page);
+});
+
+test("Check Valid Login As Admin", async ({ page }) => {
+    login_admin(page);
+});
+
+test("Check Valid Login As Lawyer", async ({ page }) => {
+    login_lawyer(page);
 });
 
 test("Check All Top Navigation Are Exist", async ({ page }) => {
+    login_user(page);
     await page.getByRole('button', { name: "PC Point" }).click();
     await page.getByRole('button', { name: "File" }).click();
     await page.getByRole('button', { name: "Customers" }).click();
@@ -45,5 +53,6 @@ test("Check All Top Navigation Are Exist", async ({ page }) => {
 })
 
 test.afterEach(async ({ page }) => {
-
+    await page.goto("http://127.0.0.1:8000/admin/logout");
+    await page.close();
 });
