@@ -35,8 +35,15 @@ test("Check Valid Login As Gofran Khan", async ({ page }) => {
     await page.locator("#username").fill("gofran.khan");
     await page.locator("#password").fill("123");
     await page.getByRole('button', { name: "Log In" }).click();
+});
+
+test("Check All Top Navigation Are Exist", async ({ page }) => {
+    await page.getByRole('button', { name: "PC Point" }).click();
+    await page.getByRole('button', { name: "File" }).click();
+    await page.getByRole('button', { name: "Customers" }).click();
+    await page.getByRole('button', { name: "Movements" }).click();
 })
 
 test.afterEach(async ({ page }) => {
-    await page.close();
+
 });
